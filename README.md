@@ -1,4 +1,3 @@
-# nukroshisha
-# e-commerce
-# php
-# symfony framework
+# Nukro Shisha
+# e-commerce web site
+# development symfony framework 4 & PHP 7
