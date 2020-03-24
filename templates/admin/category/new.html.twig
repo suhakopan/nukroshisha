@@ -1,0 +1,64 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Nukro Shisha | Yeni Kategori Ekle{% endblock %}
+
+{% block sidebar %} {% include 'admin/_sidebar.html.twig' %}{% endblock %}
+
+{% block body %}
+<div class="col-xs-12">
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <div class="box box-info">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Yeni Kategori Ekle</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <!-- form start -->
+                                <form class="form-horizontal" name="category" method="post">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-2 control-label">Kategori Başlığı</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" name="category[Title]" class="form-control" id="inputEmail3" placeholder="Örn. nargile takımları, tütünler, kömür...">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-2 control-label">Açıklama</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" name="category[Description]" class="form-control" id="inputPassword3" placeholder="Açıklama giriniz...">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-2 control-label">Anahtar Kelimeler</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" name="category[Keywords]" class="form-control" id="inputPassword3" placeholder="Örn. poseidon, sipsi, marpuç, küp kömür...">
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="category[Status]" value="1"/>
+                                    </div>
+                                    <!-- /.box-body -->
+                                    <div class="box-footer">
+                                        <a href="{{ path('admin_category_index') }}" class="btn btn-default btn-md pull-left" role="button" aria-pressed="true">Geri Dön</a>
+                                        <button type="submit" class="btn btn-info pull-right">Kaydet</button>
+                                    </div>
+                                    <!-- /.box-footer -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %} {% include 'admin/_footer.html.twig' %}{% endblock %}

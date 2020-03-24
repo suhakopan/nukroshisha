@@ -1,0 +1,101 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Nukro Shisha | Sipariş Detayı{% endblock %}
+
+{% block sidebar %} {% include 'admin/_sidebar.html.twig' %}{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="row">
+                {{ include('admin/messages.html.twig') }}
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title"><b>Görüntülenen Sipariş</b> #{{ order.id }}</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover">
+                                <tbody>
+                                <tr>
+                                    <th>Sipariş Numarası</th>
+                                    <td>#{{ order.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Müşteri Adı Soyadı</th>
+                                    <td>{{ order.Name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Kargo Adresi</th>
+                                    <td>{{ order.Address }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Müşteri Telefon No</th>
+                                    <td>{{ order.Name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Sipariş Tutarı</th>
+                                    <td>{{ order.Total }}₺</td>
+                                </tr>
+                                <tr>
+                                    <th>Sipariş Tarihi</th>
+                                    <td>{{ order.OrderDate }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Sipariş Notu</th>
+                                    <td>{{ order.Note }}</td>
+                                </tr>
+                                <form action="{{ path('admin_orders_update',{'id': order.id}) }}" method="post">
+                                <tr>
+                                    <th>Kargo Takip Numarası</th>
+                                    <td><input type="text" name="shipinfo" value="{{ order.shipinfo }}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Sipariş Durumu</th>
+                                    <td>
+                                        <select name="status">
+                                            <option>{{ order.Status }}</option>
+                                            <option>Sipariş Alındı</option>
+                                            <option>Sipariş Onaylandı</option>
+                                            <option>Kargoya Verildi</option>
+                                            <option>Sipariş Tamamlandı</option>
+                                            <option>İptal Edildi</option>
+                                        </select>
+                                        <input type="submit" value="Güncelle">
+                                    </td>
+                                </tr>
+                                </form>
+                                </tbody>
+                            </table>
+
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Ürün Kodu</th>
+                                    <th>Ürün Adı</th>
+                                    <th>Fiyat</th>
+                                    <th>Adet</th>
+                                    <th>Toplam</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for od in orderdetail %}
+                                    <tr>
+                                        <td><a href="/product/{{ od.id }}" target="_blank">#{{ od.id }}</a></td>
+                                        <td>{{ od.Title }}</td>
+                                        <td>{{ od.SPrice }}₺</td>
+                                        <td>{{ od.Quantity }}</td>
+                                        <td>{{ od.toplam }}₺</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

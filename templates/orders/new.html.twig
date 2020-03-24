@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ setting[0].title }} | Ödeme{% endblock %}
+{% block description %}{{ setting[0].description }}{% endblock %}
+{% block keywords %}{{ setting[0].keywords }}{% endblock %}
+
+{% block body %}
+<body>
+<section class="jumbotron text-center">
+    <div class="container">
+        <h2 class="jumbotron-heading">Ödeme İşlemleri</h2>
+    </div>
+</section>
+
+<div class="fh5co-loader"></div>
+
+<div id="page">
+
+    <div id="fh5co-contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-md-offset-1 animate-box">
+                    <form action="{{ path('orders_new') }}" name="order" method="post">
+                        <h3>Alışveriş Özeti</h3>
+                        <hr>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label for="fname">Ödenecek Tutar</label>
+                                <input type="text" id="tutar" name="orders[Total]" class="form-control" value="{{ total }}" placeholder="" maxlength="25" readonly>
+                            </div>
+                        </div>
+                        <h3>Alıcı Bilgileri</h3>
+                        <hr>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label for="fname">Adı Soyadı</label>
+                                <input type="text" id="name" name="orders[Name]" class="form-control" value="{{ app.user.name }} {{ app.user.surname }}" placeholder="Adı Soyadı" maxlength="25">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label for="lname">Adres</label>
+                                <textarea name="orders[Address]" id="address" cols="30" rows="10" class="form-control" placeholder="Adres...">{{ adres[0].Address }}</textarea>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label for="lname">Telefon</label>
+                                <input type="text" id="phone" name="orders[Phone]" class="form-control" value="{{ adres[0].Phone }}" placeholder="Telefon Numarası" maxlength="25">
+                            </div>
+                        </div>
+                        <!--
+                        <h3>Kredi Kartı Bilgileri</h3>
+                        <hr>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label for="fname">Adı Soyadı</label>
+                                <input type="text" id="name" name="" class="form-control" value="" placeholder="Kart Sahibinin Adı Soyadı" maxlength="25">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label for="fname">Kart Numarası</label>
+                                <input type="text" id="name" name="" class="form-control" value="" placeholder="Kart Numarası" maxlength="25">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label for="fname">Son Kullanma Tarihi</label>
+                                <input type="text" id="name" name="" class="form-control" value="" placeholder="MM/YY" maxlength="5">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label for="fname">CVC Kodu</label>
+                                <input type="password" id="name" name="" class="form-control" value="" placeholder="Kart Sahibinin Adı Soyadı" maxlength="3">
+                            </div>
+                        </div>
+                        -->
+                        <h3>Sipariş Notu</h3>
+                        <hr>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <textarea name="orders[Note]" id="address" cols="30" rows="10" class="form-control" placeholder="İletmek istediğiniz sipariş notu..."></textarea>
+                            </div>
+                        </div>
+                        <!-- /input-group -->
+                        <input type="hidden" name="token" value="{{ csrf_token('form-order') }}"/>
+                        <input type="hidden" name="orders[Status]" value="Sipariş Alındı">
+                        <input type="hidden" name="orders[OrderDate]" value="{{ "now"|date("d-m-Y") }}">
+                        <div class="form-group">
+                            <input type="submit" value="Siparişi Tamamla" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+{% block footer %} {% include 'home/_footer.html.twig' %}{% endblock %}

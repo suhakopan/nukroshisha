@@ -1,0 +1,108 @@
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="{{ asset('assets') }}/images/user.png" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>{{ app.user.name }}  {{ app.user.surname }}</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">Ana Menü</li>
+            <li>
+                <a href="{{ url('admin') }}">
+                    <i class="fa fa-home"></i> <span>Ana Sayfa</span>
+                    <span class="pull-right-container">
+            </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('admin') }}/user">
+                    <i class="fa fa-user-o"></i>
+                    <span>Kullanıcılar</span>
+                    <span class="pull-right-container">
+              <span class="label label-primary pull-right">
+                  {% for i in count_users %}
+                  {{ i.count }}
+                  {% endfor %}
+              </span>
+            </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('admin') }}/product">
+                    <i class="fa fa-diamond"></i> <span>Ürünler</span>
+                    <span class="pull-right-container">
+              <small class="label pull-right bg-green">Hot</small>
+            </span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-first-order"></i>
+                    <span>Siparişler</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ path('admin_orders_index', {'slug':'Sipariş Alındı'}) }}"><i class="fa fa-circle-o"></i>Yeni Siparişler</a></li>
+                    <li><a href="{{ path('admin_orders_index', {'slug':'Sipariş Onaylandı'}) }}"><i class="fa fa-circle-o"></i>Onaylanan Siparişler</a></li>
+                    <li><a href="{{ path('admin_orders_index', {'slug':'Kargoya Verildi'}) }}"><i class="fa fa-circle-o"></i>Kargoya Verilenler</a></li>
+                    <li><a href="{{ path('admin_orders_index', {'slug':'Sipariş Tamamlandı'}) }}"><i class="fa fa-circle-o"></i>Tamamlanan Siparişler</a></li>
+                    <li><a href="{{ path('admin_orders_index', {'slug':'İptal Edildi'}) }}"><i class="fa fa-circle-o"></i>İptal Edilen Siparişler</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-clipboard"></i>
+                    <span>Kategoriler</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ url('admin') }}/category"><i class="fa fa-bars"></i> Ana Kategoriler</a></li>
+                    <li><a href="{{ url('admin') }}/sub/category"><i class="fa fa-sort-amount-asc"></i> Alt Kategoriler</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="{{ url('admin') }}/message">
+                    <i class="fa fa-envelope"></i> <span>Mesajlar</span>
+                    <span class="pull-right-container">
+            </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('admin_setting_edit', {'id': 1}) }}">
+                    <i class="fa fa-gear"></i> <span>Site Ayarları</span>
+                    <span class="pull-right-container">
+            </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('app_logout') }}">
+                    <i class="fa fa-sign-out"></i> <span>Çıkış Yap</span>
+                    <span class="pull-right-container"></span>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

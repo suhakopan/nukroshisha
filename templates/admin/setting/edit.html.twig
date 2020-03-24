@@ -1,0 +1,210 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Nukro Shisha | Site Ayarları{% endblock %}
+
+{% block sidebar %} {% include 'admin/_sidebar.html.twig' %}{% endblock %}
+
+{% block body %}
+    <div class="col-xs-12">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            {{ include('admin/messages.html.twig') }}
+                            <div class="box-header">
+                                <div class="box box-info">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Site Ayarları</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <!-- form start -->
+                                    <form class="form-horizontal" method="post">
+                                        <div class="box-body">
+                                            <div class="col-md-6">
+                                                <!-- Custom Tabs -->
+                                                <div class="nav-tabs-custom">
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="active"><a href="#tab_1" data-toggle="tab">Genel Bilgiler</a></li>
+                                                        <li><a href="#tab_2" data-toggle="tab">Sosyal Medya Hesapları</a></li>
+                                                        <li><a href="#tab_3" data-toggle="tab">E-Posta Server Ayarları</a></li>
+                                                        <li><a href="#tab_4" data-toggle="tab">Hakkımızda</a></li>
+                                                        <li><a href="#tab_5" data-toggle="tab">İletişim</a></li>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="tab_1">
+                                                            <div class="form-group">
+                                                                <label for="inputEmail3" class="col-sm-2 control-label">Site Başlığı</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="setting[Title]" value="{{ setting.title }}" class="form-control" id="inputEmail3" placeholder="Sitenizin başlığı">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="inputPassword3" class="col-sm-2 control-label">Site Tanımı</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="setting[Description]" value="{{ setting.description }}" class="form-control" id="inputPassword3" placeholder="Sitenizin sloganı">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="inputPassword3" class="col-sm-2 control-label">Anahtar Kelimeler</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="setting[Keywords]" value="{{ setting.keywords }}" class="form-control" id="inputPassword3" placeholder="Anahtar kelimeler">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="inputPassword3" class="col-sm-2 control-label">Firma Adı</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="setting[Company]" value="{{ setting.company }}" class="form-control" id="inputPassword3" placeholder="Firmanızın Adı">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="inputPassword3"  class="col-sm-2 control-label">Firma Adresi</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" value="{{ setting.address }}" name="setting[Address]" class="form-control" id="inputPassword3" placeholder="Firmanızın Adresi">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="inputPassword3" class="col-sm-2 control-label">Telefon Numarası</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" value="{{ setting.phone }}" name="setting[Phone]" class="form-control" id="inputPassword3" placeholder="Firmanızın Telefon Numarası">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="inputPassword3" class="col-sm-2 control-label">E-posta</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" value="{{ setting.email }}" name="setting[Email]" class="form-control" id="inputPassword3" placeholder="E-posta Adresiniz">
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.tab-pane -->
+                                                        </div>
+                                                        <div class="tab-pane" id="tab_2">
+                                                            <div class="form-group">
+                                                                <div class="form-group">
+                                                                    <label for="inputPassword3" class="col-sm-2 control-label">Facebook</label>
+
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" value="{{ setting.facebook }}" name="setting[Facebook]" class="form-control" id="inputPassword3" placeholder="facebook.com/orneksayfa">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="inputPassword3" class="col-sm-2 control-label">Instagram</label>
+
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" value="{{ setting.instagram }}" name="setting[Instagram]" class="form-control" id="inputPassword3" placeholder="instagram.com/orneksayfa">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="inputPassword3" class="col-sm-2 control-label">Twitter</label>
+
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" value="{{ setting.twitter }}" name="setting[Twitter]" class="form-control" id="inputPassword3" placeholder="twitter.com/orneksayfa">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="inputPassword3" class="col-sm-2 control-label">Youtube</label>
+
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" value="{{ setting.youtube }}" name="setting[Youtube]" class="form-control" id="inputPassword3" placeholder="youtube.com/orneksayfa">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.tab-pane -->
+                                                        </div>
+                                                        <div class="tab-pane" id="tab_3">
+                                                            <div class="form-group">
+                                                                <label for="inputPassword3" class="col-sm-2 control-label">SMTP Server</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" value="{{ setting.smtpserver }}" name="setting[Smtpserver]" class="form-control" id="inputPassword3" placeholder="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="inputPassword3" class="col-sm-2 control-label">SMTP Mail</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" value="{{ setting.smtpmail }}" name="setting[Smtpmail]" class="form-control" id="inputPassword3" placeholder="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="inputPassword3" class="col-sm-2 control-label">SMTP Password</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" value="{{ setting.smtppass }}" name="setting[Smtppass]" class="form-control" id="inputPassword3" placeholder="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="inputPassword3" class="col-sm-2 control-label">SMTP Port</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" value="{{ setting.smtpport }}" name="setting[Smtpport]" class="form-control" id="inputPassword3" placeholder="">
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.tab-pane -->
+                                                        </div>
+                                                        <div class="tab-pane" id="tab_4">
+                                                            <div class="form-group">
+                                                                <label for="inputPassword3" class="col-sm-2 control-label">Hakkımızda</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <textarea name="setting[About]" rows="10" cols="30" id="editor" class="form-control" >{{ setting.about }}</textarea>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.tab-pane -->
+                                                        </div>
+                                                        <div class="tab-pane" id="tab_5">
+                                                            <div class="form-group">
+                                                                <label for="inputPassword3" class="col-sm-2 control-label">İletişim</label>
+
+                                                                <div class="col-sm-10">
+                                                                    <textarea name="setting[Contact]" rows="10" cols="30" id="editor2" class="form-control" placeholder="">{{ setting.contact }}</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.tab-pane -->
+                                                    </div>
+                                                    <!-- /.tab-content -->
+                                                </div>
+                                                <!-- nav-tabs-custom -->
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                        <div class="box-footer">
+                                            <button type="submit" class="btn btn-info pull-right">Kaydet</button>
+                                        </div>
+                                        <!-- /.box-footer -->
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor2' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+
+{% endblock %}
+
+{% block footer %} {% include 'admin/_footer.html.twig' %}{% endblock %}

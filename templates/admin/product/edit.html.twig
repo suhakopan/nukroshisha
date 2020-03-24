@@ -1,0 +1,121 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Nukro Shisha | Yeni Ürün Ekle{% endblock %}
+
+{% block sidebar %} {% include 'admin/_sidebar.html.twig' %}{% endblock %}
+
+{% block body %}
+    <div class="col-xs-12">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <div class="box box-info">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Ürün Düzenle</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <!-- form start -->
+                                    <form class="form-horizontal" name="category" method="post">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-2 control-label">Ürün Başlığı</label>
+
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="product[Title]" value="{{ product.title }}" class="form-control" id="inputEmail3" placeholder="Örn. Nukro Shisha v1...">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputPassword3" class="col-sm-2 control-label">Anahtar Kelimeler</label>
+
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="product[Keywords]" value="{{ product.keywords }}" class="form-control" id="inputPassword3" placeholder="nukro,shisha,v3,nukro nargile...">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputPassword3" class="col-sm-2 control-label">Ürün Kategorisi</label>
+                                                <div class="col-sm-10">
+                                                    <select name="product[Type]"  class="form-control">
+                                                        {%  if (catname) %}
+                                                            <option value="{{ product.Type }}">{{ catname[0].Title }} </option>
+                                                        {% endif %}
+                                                        {% for cat in catlist %}
+                                                            <option value="{{ cat.id }}">{{ cat.title }}</option>
+                                                        {% endfor %}
+                                                        <span class="input-group-addon"></span>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputPassword3"  class="col-sm-2 control-label">Açıklama</label>
+
+                                                <div class="col-sm-10">
+                                                    <input type="text" value="{{ product.description }}" name="product[Description]" class="form-control" id="inputPassword3" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputPassword3" class="col-sm-2 control-label">Adet</label>
+
+                                                <div class="col-sm-10">
+                                                    <input type="text" value="{{ product.amount }}" name="product[Amount]" class="form-control" id="inputPassword3" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputPassword3" class="col-sm-2 control-label">İlk Fiyat</label>
+
+                                                <div class="col-sm-10">
+                                                    <input type="text" value="{{ product.pprice }}" name="product[Pprice]" class="form-control" id="inputPassword3" placeholder="500">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputPassword3" class="col-sm-2 control-label">Son Fiyat</label>
+
+                                                <div class="col-sm-10">
+                                                    <input type="text" value="{{ product.sprice }}" name="product[SPrice]" class="form-control" id="inputPassword3" placeholder="450">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputPassword3" class="col-sm-2 control-label">Detaylar</label>
+
+                                                <div class="col-sm-10">
+                                                    <textarea name="product[Detail]" rows="10" id="editor" class="form-control" placeholder="Ürün açıklaması...">{{ product.Detail }}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputPassword3" class="col-sm-2 control-label">Durum</label>
+
+                                                <div class="col-sm-10">
+                                                    <input type="text" value="{{ product.status }}" name="" class="form-control" id="inputPassword3" placeholder="" readonly>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="product[status]" value="{{ product.status }}"/>
+                                        </div>
+                                        <!-- /.box-body -->
+                                        <div class="box-footer">
+                                            <a href="{{ path('admin_product_index') }}" class="btn btn-default btn-md pull-left" role="button" aria-pressed="true">Geri Dön</a>
+                                            <button type="submit" class="btn btn-info pull-right">Kaydet</button>
+                                        </div>
+                                        <!-- /.box-footer -->
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+{% endblock %}
+
+{% block footer %} {% include 'admin/_footer.html.twig' %}{% endblock %}

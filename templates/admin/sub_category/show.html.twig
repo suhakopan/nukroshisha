@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SubCategory{% endblock %}
+
+{% block body %}
+    <h1>SubCategory</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sub_category.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ sub_category.Title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ sub_category.Description }}</td>
+            </tr>
+            <tr>
+                <th>Keywords</th>
+                <td>{{ sub_category.Keywords }}</td>
+            </tr>
+            <tr>
+                <th>CategoryID</th>
+                <td>{{ sub_category.CategoryID }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_sub_category_index') }}">back to list</a>
+
+    <a href="{{ path('admin_sub_category_edit', {'id': sub_category.id}) }}">edit</a>
+
+    {{ include('admin_sub_category/_delete_form.html.twig') }}
+{% endblock %}

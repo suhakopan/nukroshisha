@@ -1,0 +1,210 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ setting[0].title }} | Profilim{% endblock %}
+{% block description %}{{ setting[0].description }}{% endblock %}
+{% block keywords %}{{ setting[0].keywords }}{% endblock %}
+
+
+{% block body %}
+    <div class="fh5co-loader"></div>
+
+    <div id="page">
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h2 class="jumbotron-heading">Kullanıcı Paneli</h2>
+            </div>
+        </section>
+        <nav class="fh5co-nav" role="navigation">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-md-pull-2 ">
+                        <div class="list-group" id="myList" role="tablist">
+                            <a href="#profilim" class="list-group-item list-group-item-action active" data-toggle="list" role="tab">Profilim</a>
+                            <a href="#adres" class="list-group-item list-group-item-action" data-toggle="list" role="tab">Adres Bilgilerim</a>
+                            <a href="#siparisler" class="list-group-item list-group-item-action" data-toggle="list" role="tab">Siparişlerim</a>
+                            <a href="#sifre" class="list-group-item list-group-item-action" data-toggle="list" role="tab">Şifre Değiştir</a>
+                            <a href="#ayarlar" class="list-group-item list-group-item-action" data-toggle="list" role="tab">Hesap Ayarları</a>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    {{ include('admin/messages.html.twig') }}
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="profilim" role="tabpanel">
+                                            <div class="col-md-12">
+                                                <h4>Profilim</h4>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <form>
+                                                            <div class="form-group row">
+                                                                <label for="username" class="col-4 col-form-label">E-Posta</label>
+                                                                <div class="col-8">
+                                                                    <input id="username" name="username" placeholder="Username" class="form-control here" required="required" type="text" value="{{ app.user.email }}" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="name" class="col-4 col-form-label">Adı</label>
+                                                                <div class="col-8">
+                                                                    <input id="name" name="name" placeholder="First Name" class="form-control here" type="text" value="{{ app.user.name }}" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="lastname" class="col-4 col-form-label">Soyadı</label>
+                                                                <div class="col-8">
+                                                                    <input id="lastname" name="lastname" placeholder="Last Name" class="form-control here" type="text" value="{{ app.user.surname }}" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <!--
+                                                            <div class="form-group row">
+                                                                <div class="offset-4 col-8">
+                                                                    <button name="submit" type="submit" class="btn btn-primary">Profilimi Güncelleştir</button>
+                                                                </div>
+                                                            </div>
+                                                            -->
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="adres" role="tabpanel">
+                                            <div class="col-md-12">
+                                                <h4>Adres Bilgilerim</h4>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <form method="post" action="{{ path('address_edit', {'id': adres[0].id}) }}">
+                                                            <input type="hidden" value="{{ adres[0].id }}">
+                                                            <div class="form-group row">
+                                                                <label for="username" class="col-4 col-form-label">Adres</label>
+                                                                <div class="col-8">
+                                                                    <textarea name="address[Address]" id="message" cols="30" rows="10" class="form-control" placeholder="Adres..." required>{{ adres[0].address }}</textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="name" class="col-4 col-form-label">Telefon</label>
+                                                                <div class="col-8">
+                                                                    <input id="name" name="address[Phone]" placeholder="First Name" class="form-control here" type="text" value="{{ adres[0].phone }}" required>
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" name="adres-token" value="{{ csrf_token('edit-adres') }}"/>
+                                                            <input type="hidden" name="address[UserID]" value="{{ app.user.id }}"/>
+                                                            <div class="form-group row">
+                                                                <div class="offset-4 col-8">
+                                                                    <button name="submit" type="submit" class="btn btn-md btn-primary">Adresimi Güncelle</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="siparisler" role="tabpanel">
+                                            <div class="col-md-12">
+                                                <h4>Siparişlerim</h4>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="cart-view-area">
+                                                            <div class="cart-view-table">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th>Sipariş Numarası</th>
+                                                                        <th>Sipariş Tutarı</th>
+                                                                        <th>Sipariş Tarihi</th>
+                                                                        <th>Sipariş Durumu</th>
+                                                                        <th>Kargo Numarası</th>
+                                                                        <th>Detaylar</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    {% for order in orders %}
+                                                                        <tr>
+                                                                            <td>#{{ order.id }}</td>
+                                                                            <td>{{ order.Total }}₺</td>
+                                                                            <td>{{ order.OrderDate }}</td>
+                                                                            <td>{{ order.ShipInfo }}</td>
+                                                                            <td>{{ order.Status }}</td>
+                                                                            <td> <a href="{{ path('orders_show',{'id': order.id}) }}" rel="tooltip" title="Göster" class="btn btn-info btn-simple btn-xs">
+                                                                                    <i class="fa fa-check-circle"></i>  Görüntüle</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    {% else %}
+                                                                        <tr>
+                                                                            <td colspan="8">Hiç siparişiniz yok</td>
+                                                                        </tr>
+                                                                    {% endfor %}
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="sifre" role="tabpanel">
+                                            <div class="col-md-12">
+                                                <h4>Şifre Değiştir</h4>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <form method="post" action="{{ path('password_edit',{'id': app.user.id}) }}">
+                                                            <div class="form-group row">
+                                                                <label for="username" class="col-4 col-form-label">Yeni Şifre</label>
+                                                                <div class="col-8">
+                                                                    <input type="password" name="users[Password]" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Şifreniz bir rakam, bir büyük harf ve bir küçük harf içermelidir, en az 8 karakter olmalıdır" class="form-control" placeholder="Yeni Şifreniz">
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" name="editpass-token" value="{{ csrf_token('pass-auth') }}"/>
+                                                            <input type="hidden" name="users[EMail]" value="{{ app.user.email }}">
+                                                            <input type="hidden" name="users[Roles]" value="ROLE_USER">
+                                                            <input type="hidden" name="users[Name]" value="{{ app.user.name }}">
+                                                            <input type="hidden" name="users[Surname]" value="{{ app.user.surname }}">
+                                                            <input type="hidden" name="users[Status]" value="1">
+                                                            <div class="form-group row">
+                                                                <div class="offset-4 col-8">
+                                                                    <button name="submit" type="submit" class="btn btn-primary">Şifremi Değiştir</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="ayarlar" role="tabpanel">
+                                            <div class="col-md-12">
+                                                <h4>Hesap Ayarları</h4>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <p><b>Hesabınız silinecektir. Devam etmek istediğinize emin misiniz?</b></p>
+                                                        <form>
+
+                                                            <div class="form-group row">
+                                                                <div class="offset-4 col-8">
+                                                                    <button name="submit" type="submit" class="btn btn-primary">Hesabımı Sil</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+
+{% endblock %}
+
+{% block footer %} {% include 'home/_footer.html.twig' %}{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Nukro Shisha | Alt Kategoriler{% endblock %}
+
+{% block sidebar %} {% include 'admin/_sidebar.html.twig' %}{% endblock %}
+
+{% block body %}
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        {{ include('admin/messages.html.twig') }}
+                        <div class="box-header">
+                            <h3 class="box-title">Alt Kategoriler</h3>
+
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover">
+                                <tbody><tr>
+                                    <th>ID</th>
+                                    <th>Alt Kategori Adı</th>
+                                    <th>Üst Kategori</th>
+                                    <th>Açıklama</th>
+                                    <th>Anahtar Kelimeler</th>
+                                    <th>Düzenle</th>
+                                    <th>Sil</th>
+                                </tr>
+                                {% for sub in result %}
+                                    <tr>
+                                        <td>{{ sub.id }}</td>
+                                        <td>{{ sub.baslik }}</td>
+                                        <td>{{ sub.title }}</td>
+                                        <td>{{ sub.description }}</td>
+                                        <td>{{ sub.keywords }}</td>
+                                        <td><a href="{{ path('admin_sub_category_edit', {'id': sub.id}) }}" class="btn btn-warning  btn-xs" role="button">Düzenle</a></td>
+                                        <td><a href="{{ path('admin_sub_category_delete', {'id': sub.id}) }}" onclick="return confirm('Kayıt silinecek emin misiniz?');" class="btn btn-danger  btn-xs" role="button">Sil</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <a href="{{ path('admin_sub_category_new') }}" class="btn btn-primary btn-md active pull-right" role="button" aria-pressed="true">Yeni Kayıt</a>
+                        </div>
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+        </section>
+        <!-- /.content -->
+    </div>
+{% endblock %}
+
+{% block footer %} {% include 'admin/_footer.html.twig' %}{% endblock %}
+

@@ -1,0 +1,25 @@
+<title>{{ product.title }}</title>
+
+{% block body %}
+    <h1>Ürün Slider Resmi Ekle</h1>
+
+    <!DOCTYPE html>
+    <html>
+    <body>
+
+    <form action="{{ path('admin_product_iupdate',{'id': id}) }}" method="post" enctype="multipart/form-data">
+        Yüklemek için resim seçin(1500x1000):
+        <input name="productid" value="{{ id }}" type="hidden" readonly>
+        <input type="file" name="imagename" id="fileToUpload">
+        <input type="submit" value="Yükle" name="submit">
+    </form>
+
+    {% if product.image1 == null %}
+        <b>Ürüne ait slider görseli bulumamadı.</b>
+    {% else %}
+        <img src="{{ asset('uploads') }}/images/{{ product.image1 }}" height="250" width="300">
+        <a href="{{ path('admin_product_idel', {'id': id}) }}" onclick="return confirm('Slider silinecek emin misiniz?');" class="btn btn-danger  btn-xs" role="button">Sil</a>
+    {% endif %}
+    </body>
+    </html>
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/shopcart.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+{% endblock %}
+{% block title %}{{ setting[0].title }} | Sepetim{% endblock %}
+{% block description %}{{ setting[0].description }}{% endblock %}
+{% block keywords %}{{ setting[0].keywords }}{% endblock %}
+
+{% block body %}
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h2 class="jumbotron-heading">Alışveriş Sepeti</h2>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            {{ include('admin/messages.html.twig') }}
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col" class="text-center">Ürün</th>
+                            <th scope="col"></th>
+                            <th scope="col" class="text-center">Adet</th>
+                            <th scope="col" class="text-center">Fiyat</th>
+                            <th> </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% set total=0 %}
+                        {% for shopcart in shopcarts %}
+                            {% for i in images %}
+                                {% if i.product_id == shopcart.product_id %}
+                        <tr>
+                            <td><img src="{{ asset('uploads') }}/images/{{ i.image }}" height="80" width="80" /> </td>
+                            <td class="text-center">{{ shopcart.title }}</td>
+                            <td></td>
+                            <td class="text-center">{{ shopcart.quantity }}</td>
+                            <td class="text-center">{{ shopcart.sprice*shopcart.quantity }} ₺</td>
+                            <td class="text-right"><a href="{{ path('shopcart_delete',{'id': shopcart.sid}) }}" class="btn-sm btn-danger"><i class="fa fa-trash"></i> </a> </td>
+                        </tr>
+                                {% endif %}
+                                {% endfor %}
+                            {% set total=total +(shopcart.sprice*shopcart.quantity) %}
+                        {% else %}
+                            <td>
+                                <td colspan="6">Sepetiniz boş!</td>
+                            </td>
+                        {% endfor %}
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Ara Toplam</td>
+                            <td class="text-right">{{ total }} ₺</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Kargo</td>
+                            <td class="text-right">Ücretsiz</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Toplam</strong></td>
+                            <td class="text-right"><strong>{{ total }} ₺</strong></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12  col-md-6">
+                        <a href="{{ path('home') }}" class="btn btn-sm btn-block btn-info">Alışverişe Devam Et</a>
+                    </div>
+                    <div class="col-sm-12 col-md-6 text-right">
+                        {% if total == 0 %}
+                        <a href="{{ path('shopcart_index') }}" class="btn btn-sm btn-block btn-success">Satın Al</a>
+                        {% else %}
+                        <a href="{{ path('orders_new') }}" class="btn btn-sm btn-block btn-success">Satın Al</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+ {% block footer %} {% include 'home/_footer.html.twig' %}{% endblock %}

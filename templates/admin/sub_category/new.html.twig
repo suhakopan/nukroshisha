@@ -1,0 +1,74 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Nukro Shisha | Yeni Alt Kategori Ekle{% endblock %}
+
+{% block sidebar %} {% include 'admin/_sidebar.html.twig' %}{% endblock %}
+
+{% block body %}
+    <div class="col-xs-12">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <div class="box box-info">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Yeni Alt Kategori Ekle</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <!-- form start -->
+                                    <form class="form-horizontal" method="post">
+                                        <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-2 control-label">Alt Kategori Adı</label>
+
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="sub_category[Title]" class="form-control" id="inputEmail3" placeholder="Örn. çelik takımlar, plastik sipsiler, bahreyn, al-fakher...">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-2 control-label">Üst Kategori</label>
+
+                                                    <div class="col-sm-10">
+                                                        <select name="sub_category[CategoryID]" class="form-control">
+                                                            {% for cat in catlist %}
+                                                            <option value="{{ cat.id }}">{{ cat.title }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            <div class="form-group">
+                                                <label for="inputPassword3" class="col-sm-2 control-label">Açıklama</label>
+
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="sub_category[Description]" class="form-control" id="inputPassword3" placeholder="Açıklama giriniz...">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputPassword3" class="col-sm-2 control-label">Anahtar Kelimeler</label>
+
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="sub_category[Keywords]" class="form-control" id="inputPassword3" placeholder="Örn. poseidon, sipsi, marpuç, küp kömür...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                        <div class="box-footer">
+                                            <a href="{{ path('admin_sub_category_index') }}" class="btn btn-default btn-md pull-left" role="button" aria-pressed="true">Geri Dön</a>
+                                            <button type="submit" class="btn btn-info pull-right">Kaydet</button>
+                                        </div>
+                                        <!-- /.box-footer -->
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %} {% include 'admin/_footer.html.twig' %}{% endblock %}

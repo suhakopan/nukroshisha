@@ -1,0 +1,97 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Nukro Shisha | {{ product.title }}{% endblock %}
+
+{% block sidebar %} {% include 'admin/_sidebar.html.twig' %}{% endblock %}
+
+{% block body %}
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">{{ product.title }} </h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover">
+                                <tbody>
+                                <tr>
+                                    <th>ID</th>
+                                    <td>{{ product.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Başlık</th>
+                                    <td>{{ product.title }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Keywords</th>
+                                    <td>{{ product.keywords }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Kategori</th>
+                                    <td>{{ product.type }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Açıklama</th>
+                                    <td>{{ product.description }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Adet</th>
+                                    <td>{{ product.amount }}</td>
+                                </tr>
+                                <tr>
+                                    <th>İlk Fiyat</th>
+                                    <td>{{ product.pprice }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Son Fiyat</th>
+                                    <td>{{ product.sPrice }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Slider Resmi(1500x1000)</th>
+                                    <td><a href="javascript:openWin('{{ path('admin_product_iupdate', {'id': product.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=100,left=200,menuBar=no,resizable=no,width=1000,height=800');">
+                                            Ekle
+                                        </a></td>
+                                </tr>
+                                <tr>
+                                    <th>Detay</th>
+                                    <td><textarea name="product[Detail]" rows="10" id="editor" class="form-control" placeholder="Ürün açıklaması..." >{{ product.Detail }}</textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>Ürün Resimleri</th>
+                                    <td><a href="javascript:openWin('{{ path('admin_image_new', {'pid': product.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=100,left=200,menuBar=no,resizable=no,width=1000,height=800');">
+                                            Ekle
+                                        </a></td>
+                                </tr>
+                                <tr>
+                                    <th>Durum</th>
+                                    <td>{{ product.status }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <a href="{{ path('admin_product_index') }}">listeye geri dön</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+        ClassicEditor.defaultConfig = {
+            commentsOnly:true
+        };
+
+    </script>
+{% endblock %}
+
+{% block footer %} {% include 'admin/_footer.html.twig' %}{% endblock %}

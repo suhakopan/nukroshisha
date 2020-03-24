@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ setting[0].title }} | {{ data[0].title }}{% endblock %}
+{% block description %}{{ data[0].description }}{% endblock %}
+{% block keywords %}{{ data[0].keywords }}{% endblock %}
+
+{% block body %}
+
+    <div id="fh5co-product">
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <!--<span>Cool Stuff</span> -->
+                    <h2>{{ data[0].title }}</h2>
+                    <p>{{ data[0].description }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-center animate-box">
+                    {% for p in products %}
+                    <div class="product">
+                        <form name="shopcart" id="the_form" action="{{ path('shopcart_new') }}" method="post">
+                        <div class="product-grid" style="background-image:url({{ asset('uploads') }}/images/{{ p.image }});">
+                            <div class="inner">
+                                <input type="hidden" name="shopcart[Quantity]" value="1">
+                                <input type="hidden" name="shopcart[ProductID]" value="{{ p.id }}">
+                                <input type="hidden" name="token" value="{{ csrf_token('add-item') }}">
+
+                                <p>
+                                    <a href="javascript:{}" onclick="document.getElementById('the_form').submit(); return false;" class="icon"><i class="icon-shopping-cart"></i></a>
+                                    <a href="{{ path('product_detail', {'id' : p.id}) }}" class="btn-md icon"><i class="icon-eye"></i></a>
+                                </p>
+                            </div>
+                        </div>
+                        </form>
+                        <div class="desc">
+                            <h3><a href="{{ path('product_detail', {'id' : p.id}) }}">{{ p.title }}</a></h3>
+                            <span class="price">{{ p.sprice }}₺</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block footer %} {% include 'home/_footer.html.twig' %}{% endblock %}

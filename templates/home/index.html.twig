@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ setting[0].title }}{% endblock %}
+{% block description %}{{ setting[0].description }}{% endblock %}
+{% block keywords %}{{ setting[0].keywords }}{% endblock %}
+
+{% block slider %} {% include 'home/_slider.html.twig' %}{% endblock %}
+
+{% block body %} {% include 'home/_body.html.twig' %}{% endblock %}
+
+{% block footer %} {% include 'home/_footer.html.twig' %}{% endblock %}

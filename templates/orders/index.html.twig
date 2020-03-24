@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ setting[0].title }} | Sipariş Tamamlandı!{% endblock %}
+{% block description %}{{ setting[0].description }}{% endblock %}
+{% block keywords %}{{ setting[0].keywords }}{% endblock %}
+
+{% block body %}
+    <header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(images/img_bg_2.jpg);">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <div class="display-t">
+                        <div class="display-tc animate-box" data-animate-effect="fadeIn">
+                            <h1>SİPARİŞ TAMAMLANDI</h1>
+                            <h2>Sipariş detaylarını 'Hesabım' sayfasından görebilirsiniz. Siparişiniz en kısa sürede işleme alınıp kargoya verilecektir. </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block footer %} {% include 'home/_footer.html.twig' %}{% endblock %}

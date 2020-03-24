@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Setting index{% endblock %}
+
+{% block body %}
+    <h1>Setting index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Keywords</th>
+                <th>Company</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Facebook</th>
+                <th>Instagram</th>
+                <th>Twitter</th>
+                <th>Youtube</th>
+                <th>Smtpserver</th>
+                <th>Smtpmail</th>
+                <th>Smtppass</th>
+                <th>Smtpport</th>
+                <th>About</th>
+                <th>Contact</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for setting in settings %}
+            <tr>
+                <td>{{ setting.id }}</td>
+                <td>{{ setting.Title }}</td>
+                <td>{{ setting.Description }}</td>
+                <td>{{ setting.Keywords }}</td>
+                <td>{{ setting.Company }}</td>
+                <td>{{ setting.Address }}</td>
+                <td>{{ setting.Phone }}</td>
+                <td>{{ setting.Email }}</td>
+                <td>{{ setting.Facebook }}</td>
+                <td>{{ setting.Instagram }}</td>
+                <td>{{ setting.Twitter }}</td>
+                <td>{{ setting.Youtube }}</td>
+                <td>{{ setting.Smtpserver }}</td>
+                <td>{{ setting.Smtpmail }}</td>
+                <td>{{ setting.Smtppass }}</td>
+                <td>{{ setting.Smtpport }}</td>
+                <td>{{ setting.About }}</td>
+                <td>{{ setting.Contact }}</td>
+                <td>
+                    <a href="{{ path('admin_setting_show', {'id': setting.id}) }}">show</a>
+                    <a href="{{ path('admin_setting_edit', {'id': setting.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="19">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

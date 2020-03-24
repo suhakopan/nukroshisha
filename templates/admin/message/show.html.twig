@@ -1,0 +1,54 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Nukro Shisha | {{ message.id }}{% endblock %}
+
+{% block sidebar %} {% include 'admin/_sidebar.html.twig' %}{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title"><b>Görüntülenen Mesaj</b> #{{ message.id }}</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover">
+                                <tbody>
+                                <tr>
+                                    <th>ID</th>
+                                    <td>{{ message.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ad</th>
+                                    <td>{{ message.Name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Soyad</th>
+                                    <td>{{ message.Surname }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Telefon Numarası</th>
+                                    <td>{{ message.Phone }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Konu</th>
+                                    <td>{{ message.Subject }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Mesaj</th>
+                                    <td>{{ message.Messaggetext }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <a href="{{ path('admin_message_index') }}">listeye geri dön</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

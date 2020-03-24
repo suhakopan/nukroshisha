@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="{{ asset('assets') }}/css/login.css">
+<title>Giriş Yap!</title>
+
+<body>
+<div class="login-page">
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% endif %}
+    <div class="form">
+        <form class="register-form">
+            <input type="text" placeholder="name"/>
+            <input type="password" placeholder="password"/>
+            <input type="text" placeholder="email address"/>
+            <button>create</button>
+            <p class="message">Zaten üye misin? <a href="#">Giriş Yap</a></p>
+        </form>
+        <form class="login-form" method="post">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="E-Posta" required autofocus/>
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Şifre" required/>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <input type="hidden" name="_target_path" value="/admin"/>
+            <button type="submit">Giriş Yap</button>
+            <p class="message">Üye değil misin? <a href="#">Yeni Hesap</a></p>
+        </form>
+    </div>
+</div>
+</body>
+
+
+<script src="{{ asset('assets') }}/js/jquery.min.js"></script>

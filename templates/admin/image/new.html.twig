@@ -1,0 +1,12 @@
+
+    <h3>Ürün Görseli Ekle</h3>
+
+    {{ include('admin/image/_form.html.twig') }}
+
+    {% for image in imagelist %}
+        <img src="{{ asset('uploads') }}/images/{{ image.image }}" height="200">
+
+        <a href="{{ path('admin_image_del', {'id': image.id,'pid': image.productid}) }}" onclick="return confirm('Ürün resmi silinecek emin misiniz?');" class="btn btn-danger  btn-xs" role="button">Sil</a>
+
+
+    {% endfor %}

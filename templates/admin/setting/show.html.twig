@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Setting{% endblock %}
+
+{% block body %}
+    <h1>Setting</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ setting.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ setting.Title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ setting.Description }}</td>
+            </tr>
+            <tr>
+                <th>Keywords</th>
+                <td>{{ setting.Keywords }}</td>
+            </tr>
+            <tr>
+                <th>Company</th>
+                <td>{{ setting.Company }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ setting.Address }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ setting.Phone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ setting.Email }}</td>
+            </tr>
+            <tr>
+                <th>Facebook</th>
+                <td>{{ setting.Facebook }}</td>
+            </tr>
+            <tr>
+                <th>Instagram</th>
+                <td>{{ setting.Instagram }}</td>
+            </tr>
+            <tr>
+                <th>Twitter</th>
+                <td>{{ setting.Twitter }}</td>
+            </tr>
+            <tr>
+                <th>Youtube</th>
+                <td>{{ setting.Youtube }}</td>
+            </tr>
+            <tr>
+                <th>Smtpserver</th>
+                <td>{{ setting.Smtpserver }}</td>
+            </tr>
+            <tr>
+                <th>Smtpmail</th>
+                <td>{{ setting.Smtpmail }}</td>
+            </tr>
+            <tr>
+                <th>Smtppass</th>
+                <td>{{ setting.Smtppass }}</td>
+            </tr>
+            <tr>
+                <th>Smtpport</th>
+                <td>{{ setting.Smtpport }}</td>
+            </tr>
+            <tr>
+                <th>About</th>
+                <td>{{ setting.About }}</td>
+            </tr>
+            <tr>
+                <th>Contact</th>
+                <td>{{ setting.Contact }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_setting_index') }}">back to list</a>
+
+    <a href="{{ path('admin_setting_edit', {'id': setting.id}) }}">edit</a>
+
+    {{ include('admin_setting/_delete_form.html.twig') }}
+{% endblock %}

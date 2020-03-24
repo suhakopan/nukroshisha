@@ -1,0 +1,67 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Nukro Shisha | Siparişler{% endblock %}
+
+{% block sidebar %} {% include 'admin/_sidebar.html.twig' %}{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        {{ include('admin/messages.html.twig') }}
+                        <div class="box-header">
+                            <h3 class="box-title">Mesajlar</h3>
+
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover">
+                                <tbody>
+                                <tr>
+                                    <th>Sipariş Numarası</th>
+                                    <th>Alıcı Adı Soyadı</th>
+                                    <th>Sipariş Tutarı</th>
+                                    <th>Sipariş Tarihi</th>
+                                    <th>Sipariş Durumu</th>
+                                    <th>Kargo Takip Numarası</th>
+                                    <th>Detaylar</th>
+                                </tr>
+                                {% for order in orders %}
+                                    <tr>
+                                        <td>#{{ order.id }}</td>
+                                        <td>{{ order.Name }}</td>
+                                        <td>{{ order.Total }}₺</td>
+                                        <td>{{ order.OrderDate }}</td>
+                                        <td>{{ order.Status }}</td>
+                                        <td>{{ order.ShipInfo }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_orders_show',{'id': order.id}) }}" rel="tooltip" title="Göster" class="btn btn-info btn-simple btn-xs"><i class="fa fa-check-circle"></i></a>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="8">Hiç sipariş yok</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+{% block footer %} {% include 'admin/_footer.html.twig' %}{% endblock %}
